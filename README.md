@@ -32,3 +32,30 @@ target_size: 可选，指定目标文件大小(MB)
 确保有足够的磁盘空间用于临时文件
 
 如果需要更高级的功能，可以考虑添加分辨率缩放、帧率调整等选项。
+
+# Video_compression_new
+代码说明：
+依赖要求：需要提前安装FFmpeg（可通过包管理器或官网下载）
+参数说明：
+resolution：字符串格式（如"1280x720"），支持以下常见分辨率：
+4K: 3840x2160
+2K: 2560x1440
+1080p: 1920x1080
+720p: 1280x720
+480p: 640x480
+压缩选项：
+-crf 23：视频质量参数（18-28，数值越小质量越高）
+-preset medium：编码速度预设（更快的编码速度会降低压缩效率）
+-c:a copy：直接复制音频流（不重新编码）
+使用方法：
+将代码保存为video_compressor.py
+在命令行运行：
+bash
+python video_compressor.py
+修改input_file和output_file路径，调整target_resolution参数
+注意事项：
+如果遇到FFmpeg错误，请确保：
+FFmpeg已正确安装
+输入文件路径正确
+输出目录有写入权限
+对于大文件压缩，建议使用-preset slower提高压缩率（但会增加处理时间）
